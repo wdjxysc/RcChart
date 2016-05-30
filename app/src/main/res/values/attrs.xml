@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RcPieChart">
+        <attr name="pieProgress" format="float"/>
+        <attr name="pieColor" format="color"/>
+    </declare-styleable>
+</resources>
