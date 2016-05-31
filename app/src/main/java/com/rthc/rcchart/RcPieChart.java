@@ -30,11 +30,10 @@ public class RcPieChart extends View {
 
     int mPieColor;
     float mPieProgress;
-
     float mLineWidth;
 
-    Paint mPaint;
-
+    Paint mPaintBack;
+    Paint mPaintTop;
 
     void setupAttrs(AttributeSet attrs){
 
@@ -60,9 +59,11 @@ public class RcPieChart extends View {
         a.recycle();
 
         //初始化画笔
-        mPaint = new Paint();
-        mPaint.setColor(mPieColor);
-        mPaint.setAntiAlias(true);
+        mPaintBack = new Paint();
+        mPaintBack.setAntiAlias(true);
+        mPaintTop = new Paint();
+        mPaintTop.setAntiAlias(true);
+        mPaintTop.setColor(mPieColor);
     }
 
     @Override
@@ -87,19 +88,57 @@ public class RcPieChart extends View {
         }
         RectF rect = new RectF(getWidth() / 2 - radius, getHeight() / 2 - radius, getWidth() / 2 + radius, getHeight() / 2 + radius);
 
-        mPaint.setColor(Color.LTGRAY);
-        canvas.drawArc(rect, -90, 360, false, mPaint);
+        mPaintBack.setColor(Color.LTGRAY);
+        canvas.drawArc(rect, -90, 360, false, mPaintBack);
 
         mLineWidth = radius;
         RectF rectCircle = new RectF(getWidth() / 2 - radius + mLineWidth/2,
                 getHeight() / 2 - radius+ mLineWidth/2,
                 getWidth() / 2 + radius - mLineWidth/2,
                 getHeight() / 2 + radius- mLineWidth/2);
-        mPaint.setColor(mPieColor);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setStrokeWidth(mLineWidth);
-        canvas.drawArc(rectCircle, -90, 360 * mPieProgress, false, mPaint);
+        mPaintTop.setColor(mPieColor);
+        mPaintTop.setStyle(Paint.Style.STROKE);
+        mPaintTop.setStrokeWidth(mLineWidth);
+        canvas.drawArc(rectCircle, -90, 360 * mPieProgress, false, mPaintTop);
 
         Log.i("log", "getWidth()--" + getWidth() + "     getHeight()--" + getHeight());
+    }
+
+    /**
+     * 设置百分比
+     * @param progress
+     */
+    public void setProgress(final float progress) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int animatorTime = 500;//动画时长
+                int frameIntervalTime = 10;//每帧间隔时间
+
+                float interval = progress - mPieProgress;
+//        if(interval<0) interval = -interval;
+
+                for (int i = 0;i < animatorTime; i+=frameIntervalTime){
+                    mPieProgress += interval/(animatorTime/frameIntervalTime);
+                    postInvalidate();
+                    try {
+                        Thread.sleep(frameIntervalTime);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                mPieProgress = progress;
+                postInvalidate();
+            }
+        }).start();
+
+    }
+
+    /**
+     * 获取百分比
+     */
+    public float getProgress() {
+        return mPieProgress;
     }
 }

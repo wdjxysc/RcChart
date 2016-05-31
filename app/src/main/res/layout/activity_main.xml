@@ -13,9 +13,15 @@
 
 
     <com.rthc.rcchart.RcPieChart
+        android:id="@+id/pieChart"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:pieColor="@color/colorAccent"
-        app:pieProgress="0.3"
+        app:pieProgress="0.8"
         />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
