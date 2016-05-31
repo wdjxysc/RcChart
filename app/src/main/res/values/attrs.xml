@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="RcPieChart">
+        <!--百分比-->
         <attr name="pieProgress" format="float"/>
+        <!--环或者pie的第一颜色-->
         <attr name="pieColor" format="color"/>
+        <!--环内或者pie背景颜色-->
+        <attr name="pieBackColor" format="color"/>
+        <!--环宽度-->
+        <attr name="circleWidth" format="dimension"/>
+        <!--环第二颜色 默认灰色-->
+        <attr name="circleSecondColor" format="color"/>
     </declare-styleable>
 </resources>
