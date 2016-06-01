@@ -64,7 +64,7 @@ public class RcPieChart extends View {
                     mPieBackColor = a.getColor(attr, Color.TRANSPARENT);
                     break;
                 case R.styleable.RcPieChart_pieProgress:
-                    // 默认设置为16sp，TypeValue也可以把sp转化为px
+                    // 默认设置为60%，TypeValue也可以把sp转化为px
                     mPieProgress = a.getFloat(attr, 0.6f);
                     break;
                 case R.styleable.RcPieChart_circleWidth:
