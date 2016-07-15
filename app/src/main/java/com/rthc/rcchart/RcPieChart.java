@@ -103,7 +103,6 @@ public class RcPieChart extends View {
             radius = getWidth() / 2;
         }
 
-
         RectF rect = new RectF(getWidth() / 2 - radius, getHeight() / 2 - radius, getWidth() / 2 + radius, getHeight() / 2 + radius);
 
         mPaintBack.setColor(mPieBackColor);

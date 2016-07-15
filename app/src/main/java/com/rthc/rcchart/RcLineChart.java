@@ -29,6 +29,4 @@ public class RcLineChart extends View{
     public RcLineChart(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
-
-
 }
